@@ -1,0 +1,65 @@
+name: Uda'CityShop latest - Package with Docker
+
+on:
+  push:
+    branches:
+      - 'main'
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v2
+      -
+        name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+      -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      -
+        name: Login to DockerHub
+        uses: docker/login-action@v1 
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      -
+        name: Build and push frontend
+        id: docker_build_frontend
+        uses: docker/build-push-action@v2
+        with:
+          context: ./src/frontend
+          file: ./src/frontend/Dockerfile
+          push: true
+          tags: abdlquadri/frontend:latest
+
+      -
+        name: Build and push productcatalogservice
+        id: docker_build_productcatalogservice
+        uses: docker/build-push-action@v2
+        with:
+          context: ./src/productcatalogservice
+          file: ./src/productcatalogservice/Dockerfile
+          push: true
+          tags: abdlquadri/productcatalogservice:latest
+
+      -
+        name: Build and push currencyservice
+        id: docker_build_currencyservice
+        uses: docker/build-push-action@v2
+        with:
+          context: ./src/currencyservice
+          file: ./src/currencyservice/Dockerfile
+          push: true
+          tags: abdlquadri/currencyservice:latest
+
+      -
+        name: Build and push adservice
+        id: docker_build_adservice
+        uses: docker/build-push-action@v2
+        with:
+          context: ./src/adservice
+          file: ./src/adservice/Dockerfile
+          push: true
+          tags: abdlquadri/adservice:latest
