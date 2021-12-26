@@ -1,0 +1,14 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: udacityshop-prod
+  namespace: argocd
+spec:
+  destination:
+    namespace: default
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: kubernetes-manifests/prod
+    repoURL: https://github.com/abdlquadri/Cloud-Native-Capstone-Project
+    targetRevision: HEAD
