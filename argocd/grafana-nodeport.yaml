@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: grafana-nodeport
+  namespace: monitoring
+spec:
+  ports:
+  - name: http
+    port: 443
+    protocol: TCP
+    targetPort: 8080
+    nodePort: 30050
+  selector:
+    app: prometheus-grafana
+  type: NodePort
