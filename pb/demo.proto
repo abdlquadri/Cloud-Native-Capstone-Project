@@ -113,3 +113,26 @@ message Ad {
     // short advertisement text to display.
     string text = 2;
 }
+
+
+// ------------Ad service Version 2------------------
+service AdServiceV2 {
+    rpc GetAds(AdRequestV2) returns (AdResponseV2) {}
+}
+
+message AdRequestV2 {
+    // List of important key words from the current page describing the context.
+    string context_keys = 1;
+}
+
+message AdResponseV2 {
+    AdV2 ads = 1;
+}
+
+message AdV2 {
+    // url to redirect to when an ad is clicked.
+    string redirect_url = 1;
+
+    // short advertisement text to display.
+    string text = 2;
+}

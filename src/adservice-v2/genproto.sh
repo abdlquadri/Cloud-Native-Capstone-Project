@@ -2,4 +2,6 @@
 
 set -e
 
-# TODO: Add the commands to generate the gRPC files
+protodir=../../pb
+
+python -m grpc_tools.protoc -I$protodir --python_out=./protobuf/ --grpc_python_out=./protobuf $protodir/demo.proto
