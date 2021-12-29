@@ -1,7 +1,10 @@
-FROM python:3.7-slim
-RUN apt-get update -qqy && \
-	apt-get -qqy install wget g++ && \
-	rm -rf /var/lib/apt/lists/*
+FROM ubuntu:bionic
+
+WORKDIR .
+
+RUN apt-get update
+RUN apt-get install python3 python3-pip -y
+
 # show python logs as they occur
 ENV PYTHONUNBUFFERED=0
 
