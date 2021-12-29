@@ -23,7 +23,7 @@ jobs:
             abdlquadri/productcatalogservice
             abdlquadri/currencyservice
             abdlquadri/adservice
-            abdlquadri/adservice_v2
+            abdlquadri/adservice-v2
           # generate Docker tags based on the following events/attributes
           tags: |
             type=schedule
