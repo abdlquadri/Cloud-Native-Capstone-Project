@@ -4,6 +4,7 @@ WORKDIR .
 
 RUN apt-get update
 RUN apt-get install python3 python3-pip -y
+RUN apt-get install wget -y
 
 # show python logs as they occur
 ENV PYTHONUNBUFFERED=0
