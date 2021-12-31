@@ -29,7 +29,7 @@ import (
 	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
 
-	pb "github.com/GoogleCloudPlatform/microservices-demo/src/frontend/genproto"
+	pb "github.com/abdlquadri/Cloud-Native-Capstone-Project/tree/master/src/frontend/genproto/hipstershop.com"
 	// "github.com/GoogleCloudPlatform/microservices-demo/src/frontend/money"
 )
 
