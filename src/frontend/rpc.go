@@ -18,7 +18,7 @@ import (
 	"context"
 	"time"
 
-	pb "github.com/abdlquadri/Cloud-Native-Capstone-Project/tree/master/src/frontend/genproto/hipstershop.com"
+	pb "github.com/abdlquadri/Cloud-Native-Capstone-Project/src/frontend/genproto/hipstershop.com"
 
 	"github.com/pkg/errors"
 )
