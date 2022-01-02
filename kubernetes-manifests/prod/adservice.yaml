@@ -16,7 +16,7 @@ spec:
       terminationGracePeriodSeconds: 5
       containers:
       - name: server
-        image: abdlquadri/adservice-v2:sha-4144da1
+        image: abdlquadri/adservice-v2:sha-1793882
         ports:
         - containerPort: 9556
         env:
