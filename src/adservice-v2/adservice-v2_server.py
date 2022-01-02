@@ -8,6 +8,7 @@ from concurrent import futures
 
 import grpc
 
+from grpc_health.v1 import health
 from grpc_health.v1 import health_pb2
 from grpc_health.v1 import health_pb2_grpc
 
@@ -38,7 +39,7 @@ class AdServiceV2():
     
     def Watch(self, request, context):
         return health_pb2.HealthCheckResponse(
-            status=health_pb2.HealthCheckResponse.UNIMPLEMENTED)
+            status=health_pb2.HealthCheckResponse.SERVING)
 
 
 if __name__ == "__main__":
@@ -48,8 +49,16 @@ if __name__ == "__main__":
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=2))
     demo_pb2_grpc.add_AdServiceV2Servicer_to_server(AdServiceV2(), server)
 
+
+   # Create a health check servicer. We use the non-blocking implementation
+   # to avoid thread starvation.
+    _THREAD_POOL_SIZE = 256
+    health_servicer = health.HealthServicer(
+    experimental_non_blocking=True,
+    experimental_thread_pool=futures.ThreadPoolExecutor(
+    max_workers=_THREAD_POOL_SIZE))
     # Uncomment to add the HealthChecks to the gRPC server to the Ad-v2 service
-    health_pb2_grpc.add_HealthServicer_to_server(service, server)
+    health_pb2_grpc.add_HealthServicer_to_server(health_servicer, server)
 
     logger.info("Server starting on port 9556...")
     server.add_insecure_port("[::]:9556")
