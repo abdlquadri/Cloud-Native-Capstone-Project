@@ -1,4 +1,4 @@
-module github.com/GoogleCloudPlatform/microservices-demo/src/frontend
+module github.com/abdlquadri/Cloud-Native-Capstone-Project/src/frontend
 
 go 1.15
 
