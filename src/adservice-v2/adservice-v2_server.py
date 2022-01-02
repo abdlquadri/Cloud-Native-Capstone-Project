@@ -48,6 +48,8 @@ if __name__ == "__main__":
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=2))
     demo_pb2_grpc.add_AdServiceV2Servicer_to_server(AdServiceV2(), server)
 
+    # Uncomment to add the HealthChecks to the gRPC server to the Ad-v2 service
+    health_pb2_grpc.add_HealthServicer_to_server(service, server)
 
     logger.info("Server starting on port 9556...")
     server.add_insecure_port("[::]:9556")
@@ -58,6 +60,3 @@ if __name__ == "__main__":
             time.sleep(86400)
     except KeyboardInterrupt:
         server.stop(0)   
-
-    # Uncomment to add the HealthChecks to the gRPC server to the Ad-v2 service
-    health_pb2_grpc.add_HealthServicer_to_server(service, server)
