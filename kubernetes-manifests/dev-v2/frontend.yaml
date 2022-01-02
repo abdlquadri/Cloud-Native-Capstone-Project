@@ -15,7 +15,7 @@ spec:
       serviceAccountName: default
       containers:
         - name: server
-          image: abdlquadri/frontend:sha-8420b0a
+          image: abdlquadri/frontend:sha-96ec320
           ports:
           - containerPort: 8080
           readinessProbe:
