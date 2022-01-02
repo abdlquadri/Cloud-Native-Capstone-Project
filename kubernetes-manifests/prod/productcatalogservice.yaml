@@ -16,7 +16,7 @@ spec:
       terminationGracePeriodSeconds: 5
       containers:
       - name: server
-        image: abdlquadri/productcatalogservice:sha-e320cae
+        image: abdlquadri/productcatalogservice:sha-b9a0e55
         ports:
         - containerPort: 3550
         env:
